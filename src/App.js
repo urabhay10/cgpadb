@@ -1,25 +1,71 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Mainpage from './Components/Mainpage';
+import Results from './Components/Results';
 import './App.css';
 
-function App() {
+export default function App() {
+  const [result, setResult] = useState(null);
+  const [showRes, setShowRes] = useState(false);
+
+  useEffect(() => {
+    // This is equivalent to componentDidMount
+    // You can put any initial setup logic here
+    // For example:
+    // getGrade(10).then(res => console.log(res));
+    if(localStorage.getItem('views')===null){
+      localStorage.setItem('views',0)
+    }
+  }, []); // Empty dependency array means it runs only once after initial render
+
+  async function getGrade(num) {
+    num = Number(num);
+    if (num === 10) {
+      return "AA";
+    } else if (num === 9) {
+      return "AB";
+    } else if (num === 8) {
+      return "BB";
+    } else if (num === 7) {
+      return "BC";
+    } else if (num === 6) {
+      return "CC";
+    } else if (num === 5) {
+      return "CD";
+    } else if (num === 4) {
+      return "DD";
+    } else if (num === 0) {
+      return "FF";
+    }
+  }
+  function incrementViews(num){
+    localStorage.setItem('views', Number(localStorage.getItem('views')) + num);
+  }
+  async function changeres(res) {
+    res.emth = await getGrade(res.emth);
+    res.emlab = await getGrade(res.emlab);
+    res.chemth = await getGrade(res.chemth);
+    res.math = await getGrade(res.math);
+    res.frb2 = await getGrade(res.frb2);
+    res.iks = await getGrade(res.iks);
+    res.cppsth = await getGrade(res.cppsth);
+    res.cppslab = await getGrade(res.cppslab);
+    res.emth = String(res.emth);
+    res.emlab = String(res.emlab);
+    res.chemth = String(res.chemth);
+    res.math = String(res.math);
+    res.frb2 = String(res.frb2);
+    res.iks = String(res.iks);
+    res.cppsth = String(res.cppsth);
+    res.cppslab = String(res.cppslab);
+    setResult(res);
+    setShowRes(true);
+    incrementViews(1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!showRes && <Mainpage changeres={changeres} />}
+      {showRes && <Results result={result} />}
     </div>
   );
 }
-
-export default App;
