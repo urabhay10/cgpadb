@@ -44,6 +44,7 @@ export default function App() {
     res.emth = await getGrade(res.emth);
     res.emlab = await getGrade(res.emlab);
     res.chemth = await getGrade(res.chemth);
+    res.chemlab = await getGrade(res.chemlab);
     res.math = await getGrade(res.math);
     res.frb2 = await getGrade(res.frb2);
     res.iks = await getGrade(res.iks);

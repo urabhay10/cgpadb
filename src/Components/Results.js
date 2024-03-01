@@ -63,6 +63,17 @@ function Results({ result }) {
                     ))}
                 </tbody>
             </table>
+            <button style={{
+                width: '100px',
+                height: '50px',
+                marginTop: '10px',
+            }}
+                onClick={() => {
+                    window.location.reload();
+                }
+                }
+                
+            >See another result</button>
             <div style={{
                 borderTop: '1px solid #fff',
                 bottom: '0',

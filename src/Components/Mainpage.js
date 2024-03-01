@@ -13,7 +13,7 @@ export default class Mainpage extends Component {
     e.preventDefault();
     console.log(this.state.roll)
     const roll = Number(this.state.roll) % 100;
-    const res = await fetch('http://localhost:8000/get-res?roll=' + roll);
+    const res = await fetch('https://cgpadb-6beeed4dcaca.herokuapp.com/get-res?roll=' + roll);
     const data = await res.json();
     console.log(data);
     this.props.changeres(data)
