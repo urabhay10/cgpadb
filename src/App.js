@@ -12,8 +12,8 @@ export default function App() {
     // You can put any initial setup logic here
     // For example:
     // getGrade(10).then(res => console.log(res));
-    if(localStorage.getItem('views')===null){
-      localStorage.setItem('views',0)
+    if (localStorage.getItem('views') === null) {
+      localStorage.setItem('views', 0)
     }
   }, []); // Empty dependency array means it runs only once after initial render
 
@@ -37,7 +37,7 @@ export default function App() {
       return "FF";
     }
   }
-  function incrementViews(num){
+  function incrementViews(num) {
     localStorage.setItem('views', Number(localStorage.getItem('views')) + num);
   }
   async function changeres(res) {

@@ -25,7 +25,8 @@ app.get('/get-res', async (req, res) => {
     res.send(result);
 });
 
-app.listen(8000, () => {
-    console.log('Server is running on port 8000');
-}
-);
+const port = process.env.PORT || 8000;
+
+app.listen(port, ()=>{
+    console.log(`The server is running at ${port}`)
+})

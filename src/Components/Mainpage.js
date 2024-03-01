@@ -12,7 +12,7 @@ export default class Mainpage extends Component {
   async handleSubmit(e) {
     e.preventDefault();
     console.log(this.state.roll)
-    const roll = Number(this.state.roll)%100;
+    const roll = Number(this.state.roll) % 100;
     const res = await fetch('http://localhost:8000/get-res?roll=' + roll);
     const data = await res.json();
     console.log(data);
