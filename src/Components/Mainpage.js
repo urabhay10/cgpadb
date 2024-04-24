@@ -13,6 +13,9 @@ export default class Mainpage extends Component {
     e.preventDefault();
     console.log(this.state.roll)
     const roll = Number(this.state.roll) % 100;
+    if(roll>79 || roll<0){
+      return;
+    }
     const res = await fetch('https://cgpa-server-4aef3303c3a7.herokuapp.com/get-res?roll=' + roll);
     const data = await res.json();
     console.log(data);
@@ -69,6 +72,16 @@ export default class Mainpage extends Component {
             maxHeight: '25px',
             margin: '5px'
           }}><FaArrowRight /></button></div>
+        <button onClick={() => {
+            this.props.setleaderboard(true);
+          }
+        } style={{
+          marginTop: '50px',
+          border: '1px solid black',
+          padding: '10px',
+          borderRadius: '10px',
+          cursor: 'pointer'
+        }}>Leaderboard</button>
       </div>
     );
   }

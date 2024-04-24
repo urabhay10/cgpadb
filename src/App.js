@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Mainpage from './Components/Mainpage';
 import Results from './Components/Results';
 import './App.css';
+import Leaderboard from './Components/Leaderboard';
 
 export default function App() {
   const [result, setResult] = useState(null);
   const [showRes, setShowRes] = useState(false);
-
+  const [showleaderboard,setleaderboard]=useState(false);
   useEffect(() => {
     // This is equivalent to componentDidMount
     // You can put any initial setup logic here
@@ -50,6 +51,7 @@ export default function App() {
     res.iks = await getGrade(res.iks);
     res.cppsth = await getGrade(res.cppsth);
     res.cppslab = await getGrade(res.cppslab);
+    res.frb1 = await getGrade(res.frb1);
     res.emth = String(res.emth);
     res.emlab = String(res.emlab);
     res.chemth = String(res.chemth);
@@ -58,6 +60,7 @@ export default function App() {
     res.iks = String(res.iks);
     res.cppsth = String(res.cppsth);
     res.cppslab = String(res.cppslab);
+    res.frb1 = String(res.frb1);
     setResult(res);
     setShowRes(true);
     incrementViews(1);
@@ -65,8 +68,9 @@ export default function App() {
 
   return (
     <div>
-      {!showRes && <Mainpage changeres={changeres} />}
-      {showRes && <Results result={result} />}
+      {!showleaderboard && !showRes && <Mainpage changeres={changeres} setleaderboard={setleaderboard} />}
+      {!showleaderboard && showRes && <Results result={result} />}
+      {showleaderboard && <Leaderboard />}
     </div>
   );
 }

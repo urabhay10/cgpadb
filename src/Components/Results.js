@@ -15,75 +15,45 @@ function Results({ result }) {
         { attribute: 'IKS', value: result.iks },
         { attribute: 'FRB2', value: result.frb2 },
     ];
+
     if (localStorage.getItem('views') > 10) {
         return (
-            <div style={{
-                fontWeight: 'bold',
-                fontSize: '20px',
-                color: 'red',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-
-            }}>
+            <div className="font-bold text-2xl text-red-500 flex flex-col justify-center items-center">
                 Stop seeing others results
-                <video autoPlay loop style={{ width: '70%', height: '70%' }}>
+                <video autoPlay loop className="w-3/4 h-3/4">
                     <source src={kyunhihorhipadhai} type="video/mp4" />
                 </video>
-                <button style={{
-                    width: '100px',
-                    height: '50px',
-                }}
-                    onClick={() => {
-                        localStorage.setItem('views', 0);
-                        window.location.reload();
-                    }
-                    }
-                >Nhi krni padhai</button>
+                <button className="w-32 h-16" onClick={() => {
+                    localStorage.setItem('views', 0);
+                    window.location.reload();
+                }}>
+                    Nhi krni padhai
+                </button>
             </div>
         )
     }
+
     return (
-        <div style={{ fontFamily: 'Arial, sans-serif' }}>
-            <h1>Results</h1>
-            <table style={{ borderCollapse: 'collapse', width: '100%' }}>
-                <thead>
-                    <tr>
-                        <th style={{ fontWeight: 'bold', padding: '8px', backgroundColor: '#000000', border: '1px solid #ccc' }}>Attribute</th>
-                        <th style={{ fontWeight: 'bold', padding: '8px', backgroundColor: '#000000', border: '1px solid #ccc' }}>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((item, index) => (
-                        <tr key={index}>
-                            <td style={{ padding: '8px', backgroundColor: '#000000', border: '1px solid #ccc' }}>{item.attribute}</td>
-                            <td style={{ padding: '8px', backgroundColor: '#000000', border: '1px solid #ccc' }}>{item.value}</td>
+        <div className="text-center">
+            <div className="">Results</div>
+            <div className="overflow-x-auto">
+                <table className="table-lg table-auto table-zebra border-collapse mx-auto">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th className="border px-4 py-2">Attribute</th>
+                            <th className="border px-4 py-2">Value</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <button style={{
-                width: '100px',
-                height: '50px',
-                marginTop: '10px',
-            }}
-                onClick={() => {
-                    window.location.reload();
-                }
-                }
-                
-            >See another result</button>
-            <div style={{
-                borderTop: '1px solid #fff',
-                bottom: '0',
-                position: 'fixed',
-                width: '100vw',
-                textAlign: 'center',
-                fontWeight: '300',
-                padding: '8px',
-            }}>
-                Made by <b>Abhay Upadhyay</b> and <b>Zoher Vohra</b>. Contact Zoher for any privacy breach concerns. Contact Abhay if you want to appreciate the site.
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index}>
+                                <td className="border px-4 py-2">{item.attribute}</td>
+                                <td className="border px-4 py-2">{item.value}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );
