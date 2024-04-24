@@ -51,6 +51,12 @@ function Results({ result }) {
                         ))}
                     </tbody>
                 </table>
+                <button className="ext-white font-bold py-2 px-4" onClick={() => {
+                    window.location.reload();
+                }
+                }>
+                    Check another result
+                </button>
             </div>
         </div>
     );
