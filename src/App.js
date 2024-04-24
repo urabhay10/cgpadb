@@ -70,7 +70,7 @@ export default function App() {
     <div>
       {!showleaderboard && !showRes && <Mainpage changeres={changeres} setleaderboard={setleaderboard} />}
       {!showleaderboard && showRes && <Results result={result} />}
-      {showleaderboard && <Leaderboard />}
+      {showleaderboard && <Leaderboard setleaderboard={setleaderboard}/>}
     </div>
   );
 }

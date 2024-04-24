@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export default function Leaderboard() {
+export default function Leaderboard({setleaderboard}) {
     function getGrade(num) {
         num = Number(num);
         if (num === 10) {
@@ -33,8 +33,8 @@ export default function Leaderboard() {
     }, [])
     return (
         <>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => {
-            window.location.href = '/';
+        <button className="ext-white font-bold py-2 px-4" onClick={() => {
+            setleaderboard(false)
         }}>
             Back
         </button>
