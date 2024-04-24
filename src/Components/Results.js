@@ -1,5 +1,5 @@
 import React from 'react';
-import kyunhihorhipadhai from './assets/abc.mkv';
+import meme from './assets/meme.png'
 
 function Results({ result }) {
     const data = [
@@ -19,15 +19,12 @@ function Results({ result }) {
     if (localStorage.getItem('views') > 10) {
         return (
             <div className="font-bold text-2xl text-red-500 flex flex-col justify-center items-center">
-                Stop seeing others results
-                <video autoPlay loop className="w-3/4 h-3/4">
-                    <source src={kyunhihorhipadhai} type="video/mp4" />
-                </video>
+                <img src={meme} alt="alto" />
                 <button className="w-32 h-16" onClick={() => {
                     localStorage.setItem('views', 0);
                     window.location.reload();
                 }}>
-                    Nhi krni padhai
+                    Go back
                 </button>
             </div>
         )
