@@ -14,6 +14,7 @@ function Results({ result }) {
         { attribute: 'Chem lab', value: result.chemlab },
         { attribute: 'IKS', value: result.iks },
         { attribute: 'FRB2', value: result.frb2 },
+        { attribute: 'FRB1', value: result.frb1 },
     ];
 
     if (localStorage.getItem('views') > 10) {
