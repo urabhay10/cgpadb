@@ -1,5 +1,5 @@
 import React from 'react';
-import meme from './assets/meme.png'
+// import meme from './assets/meme.png'
 
 function Results({ result }) {
     const data = [
@@ -12,24 +12,26 @@ function Results({ result }) {
         { attribute: 'Em lab', value: result.emlab },
         { attribute: 'Chem theory', value: result.chemth },
         { attribute: 'Chem lab', value: result.chemlab },
-        { attribute: 'IKS', value: result.iks },
-        { attribute: 'FRB2', value: result.frb2 },
         { attribute: 'FRB1', value: result.frb1 },
+        { attribute: 'FRB2', value: result.frb2 },
+        { attribute: 'IKS', value: result.iks },
+        { attribute: 'DSW', value: result.dsw },
+        { attribute: 'CC', value: result.cc },
     ];
 
-    if (localStorage.getItem('views') > 10) {
-        return (
-            <div className="font-bold text-2xl text-red-500 flex flex-col justify-center items-center">
-                <img src={meme} alt="alto" />
-                <button className="w-32 h-16" onClick={() => {
-                    localStorage.setItem('views', 0);
-                    window.location.reload();
-                }}>
-                    Go back
-                </button>
-            </div>
-        )
-    }
+    // if (localStorage.getItem('views') > 10) {
+    //     return (
+    //         <div className="font-bold text-2xl text-red-500 flex flex-col justify-center items-center">
+    //             <img src={meme} alt="alto" />
+    //             <button className="w-32 h-16" onClick={() => {
+    //                 localStorage.setItem('views', 0);
+    //                 window.location.reload();
+    //             }}>
+    //                 Go back
+    //             </button>
+    //         </div>
+    //     )
+    // }
 
     return (
         <div className="text-center">

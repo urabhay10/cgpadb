@@ -52,6 +52,8 @@ export default function App() {
     res.cppsth = await getGrade(res.cppsth);
     res.cppslab = await getGrade(res.cppslab);
     res.frb1 = await getGrade(res.frb1);
+    res.cc = await getGrade(res.cc);
+    res.dsw = await getGrade(res.dsw);
     res.emth = String(res.emth);
     res.emlab = String(res.emlab);
     res.chemth = String(res.chemth);
@@ -60,6 +62,8 @@ export default function App() {
     res.iks = String(res.iks);
     res.cppsth = String(res.cppsth);
     res.cppslab = String(res.cppslab);
+    res.cc = String(res.cc);
+    res.dsw = String(res.dsw);
     res.frb1 = String(res.frb1);
     setResult(res);
     setShowRes(true);
