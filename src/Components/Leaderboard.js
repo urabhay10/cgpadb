@@ -95,7 +95,7 @@ export default function Leaderboard({ setleaderboard }) {
                                     </td>
                                     <td className="border px-4 py-2" style={{
                                         color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
-                                    }}>{item.pointer.toPrecision(2)}</td>
+                                    }}>{item.pointer.toPrecision(4)}</td>
 
                                     <td className="border px-4 py-2" style={{
                                         color: getColor(getGrade(item.math))
