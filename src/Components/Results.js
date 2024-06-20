@@ -1,37 +1,48 @@
-import React from 'react';
-// import meme from './assets/meme.png'
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-function Results({ result }) {
-    const data = [
-        { attribute: 'CGPA', value: Number(result.pointer).toPrecision(4) },
-        { attribute: 'Rank', value: result.rank === -1 ? '-' : result.rank },
-        { attribute: 'Math', value: result.math },
-        { attribute: 'CPPS theory', value: result.cppsth },
-        { attribute: 'CPPS lab', value: result.cppslab },
-        { attribute: 'Em theory', value: result.emth },
-        { attribute: 'Em lab', value: result.emlab },
-        { attribute: 'Chem theory', value: result.chemth },
-        { attribute: 'Chem lab', value: result.chemlab },
-        { attribute: 'FRB1', value: result.frb1 },
-        { attribute: 'FRB2', value: result.frb2 },
-        { attribute: 'IKS', value: result.iks },
-        { attribute: 'DSW', value: result.dsw },
-        { attribute: 'CC', value: result.cc },
-    ];
+function Results() {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const roll = queryParams.get('roll');
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true); // Add a loading state
+    const navigate = useNavigate();
 
-    // if (localStorage.getItem('views') > 10) {
-    //     return (
-    //         <div className="font-bold text-2xl text-red-500 flex flex-col justify-center items-center">
-    //             <img src={meme} alt="alto" />
-    //             <button className="w-32 h-16" onClick={() => {
-    //                 localStorage.setItem('views', 0);
-    //                 window.location.reload();
-    //             }}>
-    //                 Go back
-    //             </button>
-    //         </div>
-    //     )
-    // }
+   
+    useEffect(() => {
+        async function getResult() {
+            const res = await fetch('http://localhost:8000/get-res?roll=' + roll);
+            const data = await res.json();
+            return data;
+        }
+        
+        async function fetchData() {
+            const result = await getResult();
+
+            const subjectScores = result.scores.flatMap((score) =>
+                score.subjects.map((subject) => ({
+                    attribute: subject.name,
+                    value: subject.score
+                }))
+            );
+
+            const processedData = [
+                { attribute: 'CGPA', value: Number(result.cgpa).toPrecision(4) },
+                { attribute: 'Rank', value: result.rank === -1 ? '-' : result.rank },
+                ...subjectScores
+            ];
+
+            setData(processedData);
+            setLoading(false); // Set loading to false after data is fetched
+        }
+
+        fetchData();
+    }, [roll]);
+
+    if (loading) {
+        return <div>Loading...</div>; // Show a loading message while fetching data
+    }
 
     return (
         <div className="text-center">
@@ -54,10 +65,9 @@ function Results({ result }) {
                         ))}
                     </tbody>
                 </table>
-                <button className="ext-white font-bold py-2 px-4" onClick={() => {
-                    window.location.reload();
-                }
-                }>
+                <button className="text-white font-bold py-2 px-4" onClick={() => {
+                    navigate('/')
+                }}>
                     Check another result
                 </button>
             </div>

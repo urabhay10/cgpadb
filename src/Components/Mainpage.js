@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
+import {useNavigate} from 'react-router-dom'
+import {withRouter} from './withRouter.js'
 
-export default class Mainpage extends Component {
+export default withRouter(class Mainpage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      roll: ''
+      roll: '',
+      // navigate: useNavigate()
     }
+    this.handleLeaderBoardClick = this.handleLeaderBoardClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleLeaderBoardClick() {
+    this.props.navigate('/leaderboard')
   }
   async handleSubmit(e) {
     e.preventDefault();
@@ -16,10 +23,7 @@ export default class Mainpage extends Component {
     if(roll>79 || roll<0){
       return;
     }
-    const res = await fetch('https://cgpa-server-4aef3303c3a7.herokuapp.com/get-res?roll=' + roll);
-    const data = await res.json();
-    console.log(data);
-    this.props.changeres(data)
+    this.props.navigate('/res?roll=' + roll);
   }
   componentDidMount() {
     window.addEventListener('keydown', (e) => {
@@ -37,9 +41,7 @@ export default class Mainpage extends Component {
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        // justifyContent: 'center',
         alignItems: 'center',
-        // height: '100vh'
       }}>
         <div style={{
           fontWeight: 'bold',
@@ -72,10 +74,7 @@ export default class Mainpage extends Component {
             maxHeight: '25px',
             margin: '5px'
           }}><FaArrowRight /></button></div>
-        <button onClick={() => {
-            this.props.setleaderboard(true);
-          }
-        } style={{
+        <button onClick={this.handleLeaderBoardClick} style={{
           marginTop: '50px',
           border: '1px solid black',
           padding: '10px',
@@ -85,4 +84,4 @@ export default class Mainpage extends Component {
       </div>
     );
   }
-}
+})
