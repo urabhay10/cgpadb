@@ -12,7 +12,7 @@ function Results() {
    
     useEffect(() => {
         async function getResult() {
-            const res = await fetch('http://localhost:8000/get-res?roll=' + roll);
+            const res = await fetch('https://cgpa-server-4aef3303c3a7.herokuapp.com/get-res?roll=' + roll);
             const data = await res.json();
             return data;
         }

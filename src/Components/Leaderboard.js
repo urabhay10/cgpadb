@@ -131,7 +131,7 @@ export default function Leaderboard({ setleaderboard }) {
 
     const [data, setData] = useState([]);
     const load = async () => {
-        const res = await fetch('http://localhost:8000/get-leaderboard');
+        const res = await fetch('https://cgpa-server-4aef3303c3a7.herokuapp.com/get-leaderboard');
         const dat = await res.json();
         console.log(dat);
         setData(dat);

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Stats extends Component {
     async componentDidMount() {
         try{
-            const response = await fetch('http://localhost:8000/get-stats');
+            const response = await fetch('https://cgpa-server-4aef3303c3a7.herokuapp.com/get-stats');
             const data = await response.json();
             console.log(data);
         }catch{
