@@ -19,20 +19,15 @@ function Results() {
         
         async function fetchData() {
             const result = await getResult();
-
-            const subjectScores = result.scores.flatMap((score) =>
-                score.subjects.map((subject) => ({
-                    attribute: subject.name,
-                    value: subject.score
-                }))
-            );
-
+            const subjectScores = result.scores[1].subjects.map((subject) => ({attribute: subject.name,value: subject.score}))
+            const sgpas = result.scores.map((score,index)=>({attribute:'SGPA (sem '+(index+1)+')',value:score.sgpa?.toPrecision(4)}))
             const processedData = [
                 { attribute: 'CGPA', value: Number(result.cgpa).toPrecision(4) },
                 { attribute: 'Rank', value: result.rank === -1 ? '-' : result.rank },
-                ...subjectScores
+                ...sgpas,
+                ...subjectScores,
             ];
-
+            console.log(processedData)
             setData(processedData);
             setLoading(false); // Set loading to false after data is fetched
         }

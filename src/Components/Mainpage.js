@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { FaArrowRight } from 'react-icons/fa'
-import {useNavigate} from 'react-router-dom'
-import {withRouter} from './withRouter.js'
+import { withRouter } from './withRouter.js'
 
 export default withRouter(class Mainpage extends Component {
   constructor(props) {
@@ -20,7 +19,7 @@ export default withRouter(class Mainpage extends Component {
     e.preventDefault();
     console.log(this.state.roll)
     const roll = Number(this.state.roll) % 100;
-    if(roll>79 || roll<0){
+    if (roll > 79 || roll < 0) {
       return;
     }
     this.props.navigate('/res?roll=' + roll);
@@ -81,6 +80,24 @@ export default withRouter(class Mainpage extends Component {
           borderRadius: '10px',
           cursor: 'pointer'
         }}>Leaderboard</button>
+        <hr style={{
+          width: '100vw',
+          margin: '50px'
+        }} />
+        <div style={{
+          textAlign: 'center'
+        }}>
+          For any changes in grades or rank, study well and score more marks
+        </div>
+        <hr style={{
+          width: '100vw',
+          margin: '50px'
+        }} />
+        <div style={{
+          textAlign: 'center'
+        }}>
+          For any issues or requests regarding the website, contact Abhay Upadhyay
+        </div>
       </div>
     );
   }
