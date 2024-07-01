@@ -8,7 +8,26 @@ function Results() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true); // Add a loading state
     const navigate = useNavigate();
-
+    function getGrade(num) {
+        num = Number(num);
+        if (num === 10) {
+            return "AA";
+        } else if (num === 9) {
+            return "AB";
+        } else if (num === 8) {
+            return "BB";
+        } else if (num === 7) {
+            return "BC";
+        } else if (num === 6) {
+            return "CC";
+        } else if (num === 5) {
+            return "CD";
+        } else if (num === 4) {
+            return "DD";
+        } else if (num === 0) {
+            return "FF";
+        }
+    }
    
     useEffect(() => {
         async function getResult() {
@@ -19,7 +38,7 @@ function Results() {
         
         async function fetchData() {
             const result = await getResult();
-            const subjectScores = result.scores[1].subjects.map((subject) => ({attribute: subject.name,value: subject.score}))
+            const subjectScores = result.scores[1].subjects.map((subject) => ({attribute: subject.name,value: getGrade(subject.score)}))
             const sgpas = result.scores.map((score,index)=>({attribute:'SGPA (sem '+(index+1)+')',value:score.sgpa?.toPrecision(4)}))
             const processedData = [
                 { attribute: 'CGPA', value: Number(result.cgpa).toPrecision(4) },

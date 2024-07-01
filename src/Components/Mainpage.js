@@ -22,6 +22,9 @@ export default withRouter(class Mainpage extends Component {
     if (roll > 79 || roll < 0) {
       return;
     }
+    if(roll==62){
+      window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    }
     this.props.navigate('/res?roll=' + roll);
   }
   componentDidMount() {

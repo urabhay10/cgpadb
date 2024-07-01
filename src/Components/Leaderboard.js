@@ -173,26 +173,32 @@ export default function Leaderboard({ setleaderboard }) {
                                     cursor: 'pointer'
                                 }} className={index >= 3 ? '' : ""} onClick={()=>{navigate('/res?roll='+item.roll)}}>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: index === 0 ? 'gold' : index === 1 ? '#BCC6CC' : index === 2 ? '#cd7f32' : '',
+                                        fontWeight: index<3?'bold':'normal'
                                     }}>{item.rank === -1 ? '-' : item.rank}</td>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: index === 0 ? 'gold' : index === 1 ? '#BCC6CC' : index === 2 ? '#cd7f32' : '',
+                                        fontWeight: index<3?'bold':'normal'
                                     }}>
                                         {getname(item.roll)}
                                     </td>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: index === 0 ? 'gold' : index === 1 ? '#BCC6CC' : index === 2 ? '#cd7f32' : '',
+                                        fontWeight: index<3?'bold':'normal'
                                     }}>
                                         {item.roll}
                                     </td>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: index === 0 ? 'gold' : index === 1 ? '#BCC6CC' : index === 2 ? '#cd7f32' : '',
+                                        fontWeight: index<3?item.rank!==-1?'bold':'normal':'normal'
                                     }}>{item.cgpa.toPrecision(4)}</td>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: item.scores[0].rank === 1 ? 'gold' : item.scores[0].rank === 2 ? '#BCC6CC' : item.scores[0].rank === 3 ? '#cd7f32' : '',
+                                        fontWeight: item.scores[0].rank<4?item.rank!==-1?'bold':'normal':'normal'
                                     }}>{item.scores[0].sgpa.toPrecision(4)}</td>
                                     <td className="border px-4 py-2" style={{
-                                        color: index === 0 ? 'gold' : index === 1 ? '#C0C0C0' : index === 2 ? '#cd7f32' : ''
+                                        color: item.scores[1].rank === 1 ? 'gold' : item.scores[1].rank === 2 ? '#BCC6CC' : item.scores[1].rank === 3 ? '#cd7f32' : '',
+                                        fontWeight: item.scores[1].rank<4?item.rank!==-1?'bold':'normal':'normal'
                                     }}>{item.scores[1].sgpa?item.scores[1].sgpa.toPrecision(4):'-'}</td>
                                 </tr>
                             ))}
